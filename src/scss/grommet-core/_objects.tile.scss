@@ -34,6 +34,20 @@
     @include media-query(lap-and-up) {
       flex-basis: $tile-size;
     }
+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      // flex-basis doesn't work in IE, so we need to set the width to the flex-basis
+      // width explicitly, and set the .tile div to display block (default)
+      width: $tile-size;
+      display: block;
+
+      // prevents overflowing past parent's width, by setting
+      // all child elements (except svg, which has undesirable effects on anchor icons)
+      // to width 100%
+      *:not(svg) {
+        width: 100%;
+      }
+    }
   }
 
   &:not(.tiles--flush) {

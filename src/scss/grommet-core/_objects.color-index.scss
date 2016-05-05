@@ -20,6 +20,13 @@
   .background-color-index-neutral-#{$i},
   .background-color-index-neutral-#{$i + length($brand-neutral-colors)} {
     background-color: nth($brand-neutral-colors, $i);
+
+    &.tile--selectable:hover:not(.tile--selected) {
+      // IE11 fix, so background color gets absorbed by Tile on hover
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        background-color: nth($brand-neutral-colors, $i);
+      }
+    }
   }
 
   .background-color-index-neutral-#{$i}-t,
@@ -77,6 +84,13 @@
   .background-color-index-accent-#{$i},
   .background-color-index-accent-#{$i + length($brand-accent-colors)} {
     background-color: nth($brand-accent-colors, $i);
+
+    &.tile--selectable:hover:not(.tile--selected) {
+      // IE11 fix, so background color gets absorbed by Tile on hover
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        background-color: nth($brand-accent-colors, $i);
+      }
+    }
   }
 
   .background-color-index-accent-#{$i}-t,
@@ -134,6 +148,13 @@
   .background-color-index-grey-#{$i},
   .background-color-index-grey-#{$i + length($brand-grey-colors)} {
     background-color: nth($brand-grey-colors, $i);
+
+    &.tile--selectable:hover:not(.tile--selected) {
+      // IE11 fix, so background color gets absorbed by Tile on hover
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        background-color: nth($brand-grey-colors, $i);
+      }
+    }
   }
 
   .background-color-index-grey-#{$i}-a,
@@ -213,6 +234,13 @@
   .background-color-index-light-#{$i},
   .background-color-index-light-#{$i + length($brand-light-colors)} {
     background-color: nth($brand-light-colors, $i);
+
+    &.tile--selectable:hover:not(.tile--selected) {
+      // IE11 fix, so background color gets absorbed by Tile on hover
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        background-color: nth($brand-light-colors, $i);
+      }
+    }
   }
 
   .background-color-index-light-#{$i}-a,
