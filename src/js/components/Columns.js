@@ -74,7 +74,12 @@ export default class Columns extends Component {
     if (child) {
       const childStyles = window.getComputedStyle(child);
       if (childStyles && childStyles.width) {
-        minColumnWidth = parseFloat(childStyles.width);
+        let childLeftMargin = childStyles.marginLeft ?
+          parseFloat(childStyles.marginLeft) :  0;
+        let childRightMargin = childStyles.marginRight ?
+          parseFloat(childStyles.marginRight) :  0;
+        minColumnWidth =
+          parseFloat(childStyles.width) + childLeftMargin + childRightMargin;
       }
     }
 
@@ -193,6 +198,20 @@ export default class Columns extends Component {
       }
     );
 
+    const container = this.containerRef;
+    let columnStyles;
+
+    if (container) {
+      const column = container.childNodes[0];
+      if (column) {
+        const child = column.childNodes[0];
+        const childStyles = window.childStyles = window.getComputedStyle(child);
+        columnStyles = {flexBasis: `calc(${childStyles.width} + ${childStyles.marginLeft} + ${childStyles.marginRight})`};
+      }
+    }
+
+    console.log("columnStyles",columnStyles);
+
     const groups = this._renderColumns();
     const columns = groups.map((group, index) => (
       <div key={index} className={`${CLASS_ROOT}__column`}>
@@ -211,6 +230,7 @@ export default class Columns extends Component {
 Columns.propTypes = {
   count: PropTypes.number,
   justify: PropTypes.oneOf(['start', 'center', 'between', 'end']),
+  margin: PropTypes.oneOf(['small', 'medium', 'large']),
   masonry: PropTypes.bool,
   maxCount: PropTypes.number,
   responsive: PropTypes.bool,

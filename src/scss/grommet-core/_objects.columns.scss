@@ -1,5 +1,29 @@
 // (C) Copyright 2016 Hewlett Packard Enterprise Development LP
 
+@mixin columnFlexBasis ($originalBasis) {
+  > .#{$grommet-namespace}columns__column {
+    flex-basis: calc(#{$originalBasis});
+  }
+
+  &.#{$grommet-namespace}columns--margin-small {
+    > .#{$grommet-namespace}columns__column {
+      flex-basis: calc(#{$originalBasis} + #{halve($inuit-base-spacing-unit)});
+    }
+  }
+
+  &.#{$grommet-namespace}columns--margin-medium {
+    > .#{$grommet-namespace}columns__column {
+      flex-basis: calc(#{$originalBasis} + #{$inuit-base-spacing-unit});
+    }
+  }
+
+  &.#{$grommet-namespace}columns--margin-large {
+    > .#{$grommet-namespace}columns__column {
+      flex-basis: calc(#{$originalBasis} + #{double($inuit-base-spacing-unit)});
+    }
+  }
+}
+
 .#{$grommet-namespace}columns {
   display: flex;
   flex-direction: row;
@@ -39,21 +63,15 @@
 }
 
 .#{$grommet-namespace}columns--small {
-  > .#{$grommet-namespace}columns__column {
-    flex-basis: $size-small;
-  }
+  @include columnFlexBasis($size-small);
 }
 
 .#{$grommet-namespace}columns--medium {
-  > .#{$grommet-namespace}columns__column {
-    flex-basis: $size-medium;
-  }
+  @include columnFlexBasis($size-medium);
 }
 
 .#{$grommet-namespace}columns--large {
-  > .#{$grommet-namespace}columns__column {
-    flex-basis: $size-large;
-  }
+  @include columnFlexBasis($size-large);
 }
 
 .#{$grommet-namespace}columns--justify-start {
