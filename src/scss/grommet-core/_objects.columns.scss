@@ -20,6 +20,18 @@
   }
 }
 
+.#{$grommet-namespace}columns--full {
+  .#{$grommet-namespace}columns__column {
+    flex-grow: 1;
+
+    @include media-query(lap-and-up) {
+      > * {
+        width: auto;
+      }
+    }
+  }
+}
+
 .#{$grommet-namespace}columns--responsive {
   > .#{$grommet-namespace}columns__column {
     @include media-query(palm) {

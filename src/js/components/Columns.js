@@ -182,11 +182,14 @@ export default class Columns extends Component {
   }
 
   render () {
-    const { justify, responsive, size } = this.props;
+    const { full, justify, responsive, size } = this.props;
+    const { initMobile } = this.state;
+    
     let classes = classnames(
       CLASS_ROOT,
       this.props.className,
       {
+        [`${CLASS_ROOT}--full`]: full && (!initMobile),
         [`${CLASS_ROOT}--justify-${justify}`]: justify,
         [`${CLASS_ROOT}--responsive`]: responsive,
         [`${CLASS_ROOT}--${size}`]: size
@@ -209,6 +212,7 @@ export default class Columns extends Component {
 }
 
 Columns.propTypes = {
+  full: PropTypes.bool,
   justify: PropTypes.oneOf(['start', 'center', 'between', 'end']),
   masonry: PropTypes.bool,
   maxCount: PropTypes.number,
