@@ -308,7 +308,8 @@ export default class Menu extends Component {
             {
               align: this.props.dropAlign,
               colorIndex: this.props.dropColorIndex,
-              focusControl: true
+              focusControl: true,
+              preventAnchorStepScroll: true
             });
           break;
       }

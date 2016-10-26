@@ -34,7 +34,14 @@ class DropContents extends Component {
       this.originalFocusedElement = document.activeElement;
       if (!this.containerRef.contains(document.activeElement)) {
         this.anchorStepRef.focus();
-        this.anchorStepRef.scrollIntoView();
+
+        if (!drop.options.preventAnchorStepScroll) {
+          // fix issue with browser jumping to top
+          clearTimeout(this._anchorScrollTimer);
+          this._anchorScrollTimer = setTimeout(() => {
+            this.anchorStepRef.scrollIntoView();
+          }, 10);
+        }
       }
 
       this._keyboardHandlers = {
